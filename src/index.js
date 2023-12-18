@@ -3,7 +3,6 @@ import React from 'react';
 import { createRoot } from "react-dom/client";
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { createLogger } from 'redux-logger';
 import 'tachyons';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
@@ -11,17 +10,16 @@ import { requestRobots, searchRobots } from './reducers'
 import './index.css';
 import { thunk } from 'redux-thunk';
 
-const logger = createLogger() 
 const rootReducers = combineReducers({requestRobots, searchRobots})
-const store = createStore(rootReducers, applyMiddleware(thunk, logger))
+const store = createStore(rootReducers, applyMiddleware(thunk))
 
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-<Provider store={store}>
-  <App/>
-</Provider>
+  <Provider store={store}>
+    <App/>
+  </Provider>
 );
         
 registerServiceWorker();
