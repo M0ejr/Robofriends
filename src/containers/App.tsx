@@ -53,10 +53,10 @@ class App extends Component<AppProps> {
 
     return (
       <div className='tc'>
-        <h1 className='f1'>RoboFriends</h1>
+        <h1 style={{fontSize: '50px'}}>RoboFriends</h1>
         <SearchBox searchChange={onSearchChange}/>
         <Scroll>
-          { isPending ? <h1 className='tc'>Loading</h1> :
+          { isPending ? <h1 className='tc white'>Loading</h1> :
             <ErrorBoundary>
               <CardList robots={filteredRobots} />
             </ErrorBoundary>

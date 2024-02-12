@@ -8,11 +8,11 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ name, email, id }) => {
    return (
-      <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
-         <img src={`https://robohash.org/${id}?200x200`} alt="robots"/>
+      <div className="tc dib br3 pa3 ma2 grow bw2 shadow-5" style={{background:'rgb(28, 28, 28)'}}>
+         <img src={`https://robohash.org/${id}?200x200`} alt="robot"/>
          <div>
-            <h2>{name}</h2>
-            <p>{email}</p>
+            <h2 className="white">{name}</h2>
+            <p className="white">{email}</p>
          </div>
       </div>
    );
