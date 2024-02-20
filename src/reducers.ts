@@ -1,17 +1,17 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 import {
   CHANGE_SEARCHFIELD,
   REQUEST_ROBOTS_PENDING,
   REQUEST_ROBOTS_SUCCESS,
-  REQUEST_ROBOTS_FAILED
-} from './constants';
+  REQUEST_ROBOTS_FAILED,
+} from "./constants";
 
 type SearchRobotsState = {
   searchField: string;
-}
+};
 
 export const searchRobots = (
-  state: SearchRobotsState = { searchField: '' },
+  state: SearchRobotsState = { searchField: "" },
   action: { type: string; payload?: any }
 ): SearchRobotsState => {
   switch (action.type) {
@@ -46,7 +46,7 @@ export const requestRobots = (
 
 export const rootReducer = combineReducers({
   searchRobots,
-  requestRobots
+  requestRobots,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
