@@ -1,14 +1,14 @@
-import { Component, ChangeEvent } from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { ActionTypes } from '../actions';
-import { setSearchField, requestRobots } from '../actions';
-import CardList from '../components/CardList';
-import SearchBox from '../components/SearchBox';
-import Scroll from '../components/Scroll';
-import ErrorBoundary from '../components/ErrorBoundary';
-import { RootState } from '../reducers';
-import './App.css';
+import { Component, ChangeEvent } from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { ActionTypes } from "../actions";
+import { setSearchField, requestRobots } from "../actions";
+import CardList from "../components/CardList";
+import SearchBox from "../components/SearchBox";
+import Scroll from "../components/Scroll";
+import ErrorBoundary from "../components/ErrorBoundary";
+import { RootState } from "../reducers";
+import "./App.css";
 
 type AppProps = {
   searchField: string;
@@ -16,27 +16,27 @@ type AppProps = {
   isPending: boolean;
   onSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onRequestRobots: () => void;
-}
+};
 
 type Robot = {
   id: number;
   name: string;
   email: string;
-}
+};
 
 const mapStateToProps = (state: RootState) => {
   return {
     searchField: state.searchRobots.searchField,
     robots: state.requestRobots.robots,
-    isPending: state.requestRobots.isPending
+    isPending: state.requestRobots.isPending,
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => {
   return {
-    onSearchChange: (event: ChangeEvent<HTMLInputElement>) => 
+    onSearchChange: (event: ChangeEvent<HTMLInputElement>) =>
       dispatch(setSearchField(event.target.value)),
-    onRequestRobots: () => dispatch(requestRobots() as any)
+    onRequestRobots: () => dispatch(requestRobots() as any),
   };
 };
 
@@ -52,15 +52,17 @@ class App extends Component<AppProps> {
     });
 
     return (
-      <div className='tc'>
-        <h1 style={{fontSize: '50px'}}>RoboFriends</h1>
-        <SearchBox searchChange={onSearchChange}/>
+      <div className="tc">
+        <h1 style={{ fontSize: "50px" }}>RoboFriends</h1>
+        <SearchBox searchChange={onSearchChange} />
         <Scroll>
-          { isPending ? <h1 className='tc white'>Loading</h1> :
+          {isPending ? (
+            <h1 className="tc white">Loading</h1>
+          ) : (
             <ErrorBoundary>
               <CardList robots={filteredRobots} />
             </ErrorBoundary>
-          }
+          )}
         </Scroll>
       </div>
     );

@@ -7,7 +7,7 @@ type CardListProps = {
     name: string;
     email: string;
   }[];
-}
+};
 
 const CardList: React.FC<CardListProps> = ({ robots }) => {
   return (
@@ -22,6 +22,6 @@ const CardList: React.FC<CardListProps> = ({ robots }) => {
       ))}
     </div>
   );
-}
+};
 
 export default CardList;
