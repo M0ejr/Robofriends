@@ -1,30 +1,30 @@
-import { ReactNode, Component, ErrorInfo } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 
 type ErrorBoundaryProps = {
   children: ReactNode;
 };
 
-type ErrorBoundaryState = {
-  hasError: boolean;
+const ErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children }) => {
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    const errorHandler = (error: ErrorEvent) => {
+      setHasError(true);
+      console.error(error);
+    };
+
+    window.addEventListener("error", errorHandler);
+
+    return () => {
+      window.removeEventListener("error", errorHandler);
+    };
+  }, []);
+
+  if (hasError) {
+    return <h1>Something went wrong.</h1>;
+  }
+
+  return <>{children}</>;
 };
-
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  componentDidCatch(error: Error, info: ErrorInfo): void {
-    this.setState({ hasError: true });
-    console.error(error, info);
-  }
-
-  render(): ReactNode {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
-    return this.props.children;
-  }
-}
 
 export default ErrorBoundary;
