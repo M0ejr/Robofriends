@@ -19,7 +19,7 @@ type RequestRobotsPendingAction = {
 
 type RequestRobotsSuccessAction = {
   type: typeof REQUEST_ROBOTS_SUCCESS;
-  payload: any; // Replace 'any' with the actual type of your robots
+  payload: any;
 };
 
 type RequestRobotsFailedAction = {
