@@ -7,7 +7,6 @@ import {
   REQUEST_ROBOTS_FAILED,
 } from "./constants";
 
-// Define action types
 type ChangeSearchFieldAction = {
   type: typeof CHANGE_SEARCHFIELD;
   payload: string;
@@ -27,14 +26,12 @@ type RequestRobotsFailedAction = {
   payload: string;
 };
 
-// Union type for all possible actions
 export type ActionTypes =
   | ChangeSearchFieldAction
   | RequestRobotsPendingAction
   | RequestRobotsSuccessAction
   | RequestRobotsFailedAction;
 
-// Action creators
 export const setSearchField = (text: string): ChangeSearchFieldAction => ({
   type: CHANGE_SEARCHFIELD,
   payload: text,
